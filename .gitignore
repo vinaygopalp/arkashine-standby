@@ -1,0 +1,9 @@
+# Ignore these target folders
+/agriapp/migrations/
+/map/migrations/
+
+
+**/__pycache__/
+**/migrations/
+db.sqlite3
+env
