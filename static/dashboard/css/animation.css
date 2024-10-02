@@ -1,102 +1,193 @@
-@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+ 
+  /* Styles for the circular meter */
+  .meter-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      display: inline-block;
+      margin: 20px;
+  }
 
-body .container {
-  max-width: 100vw;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  grid-gap: 35px;
-  margin: 0 auto;
-  padding: 20px 0;
-}
-body .container .card {
-  position: relative;
-  width: 190px;
-  height: 190px;
-  margin: 0 auto;
-  background: #000;
-  border-radius: 15px;
-  box-shadow: 0 15px 60px rgba(0, 0, 0, 0.5);
-}
-body .container .card .face {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-body .container .card .face.face1 {
-  box-sizing: border-box;
-  padding: 20px;
-}
-body .container .card .face.face1 h2 {
-  margin: 0;
-  padding: 0;
-}
-body .container .card .face.face1 .java {
-  background-color: #00fffc;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-body .container .card .face.face1 .python {
-  background-color: #00fffc;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-body .container .card .face.face1 .cSharp {
-  background-color: #00fffc;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-body .container .card .face.face2 {
-  transition: 0.5s;
-}
-body .container .card .face.face2 h4 {
-  margin: 0;
-  padding: 0;
-  /* font-size: 10em; */
-  color: #fff;
-  transition: 0.5s;
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  z-index: 10;
-}
-body .container .card:hover .face.face2 {
-  height: 60px;
-}
-body .container .card:hover .face.face2 h2 {
-  font-size: 2em;
-}
-/* body .container .card:nth-child(1) .face.face2 {
-  background-image: linear-gradient(40deg, #fffc00 0%, #fc00ff 45%, #00fffc 100%);
-  border-radius: 15px;
-} */
-body .container .card:nth-child(1) .face.face2 {
-  background-image: linear-gradient(40deg, rgb(80, 234, 80) 0%, rgb(23, 202, 23) 45%, #41d21c 100%);
-  border-radius: 15px;
-}
-body .container .card:nth-child(2) .face.face2 {
-  background-image: linear-gradient(40deg, rgb(80, 234, 80) 0%, rgb(23, 202, 23) 45%, #41d21c 100%);
-  border-radius: 15px;
-}
-body .container .card:nth-child(3) .face.face2 {
-  background-image: linear-gradient(40deg, rgb(80, 234, 80) 0%, rgb(23, 202, 23) 45%, #41d21c 100%);
-  border-radius: 15px;
-}
-body .container .card:nth-child(4) .face.face2 {
-  background-image: linear-gradient(40deg, rgb(80, 234, 80) 0%, rgb(23, 202, 23) 45%, #41d21c 100%);
-  border-radius: 15px;
-}
-body .container .card:nth-child(5) .face.face2 {
-  background-image: linear-gradient(40deg, rgb(80, 234, 80) 0%, rgb(23, 202, 23) 45%, #41d21c 100%);
-  border-radius: 15px;
-}
-body .container .card:nth-child(6) .face.face2 {
-  background-image: linear-gradient(40deg, rgb(80, 234, 80) 0%, rgb(23, 202, 23) 45%, #41d21c 100%);
-  border-radius: 15px;
+  svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg); /* Rotate to start at the top */
+  }
+
+  .circle-bg {
+      fill: none;
+      stroke: #56df83;
+      stroke-width: 10;
+  }
+
+  .circle {
+      fill: none;
+      stroke: #07401f;
+      stroke-width: 10;
+      stroke-dasharray: 282.6;
+      stroke-dashoffset: 282.6;
+      transition: stroke-dashoffset 1s ease;
+  }
+
+  .counter-number {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      font-weight: bold;
+  }
+ #containerchart, #containerchart2{
+  rotate: 90deg;
+ }
+
+
+
+ 
+
+
+.graph {
+	margin-bottom:1em;
+  font:normal 100%/150% arial,helvetica,sans-serif;
 }
 
-/* canvas {
-  background-color: #ffffff7d;
-} */
+.graph caption {
+	font:bold 150%/120% arial,helvetica,sans-serif;
+	padding-bottom:0.33em;
+}
+
+.graph tbody th {
+	text-align:right;
+}
+
+@supports (display:grid) {
+
+	@media (min-width:32em) {
+
+		.graph {
+			display:block;
+      width:600px;
+      height:300px;
+		}
+
+		.graph caption {
+			display:block;
+		}
+
+		.graph thead {
+			display:none;
+		}
+
+		.graph tbody {
+			position:relative;
+			display:grid;
+			grid-template-columns:repeat(auto-fit, minmax(2em, 1fr));
+			column-gap:2.5%;
+			align-items:end;
+			height:100%;
+			margin:3em 0 1em 2.8em;
+			padding:0 1em;
+			border-bottom:2px solid rgba(0,0,0,0.5);
+			background:repeating-linear-gradient(
+				180deg,
+				rgba(170,170,170,0.7) 0,
+				rgba(170,170,170,0.7) 1px,
+				transparent 1px,
+				transparent 20%
+			);
+		}
+
+		.graph tbody:before,
+		.graph tbody:after {
+			position:absolute;
+			left:-3.2em;
+			width:2.8em;
+			text-align:right;
+			font:bold 80%/120% arial,helvetica,sans-serif;
+		}
+
+		.graph tbody:before {
+			content:"100%";
+			top:-0.6em;
+		}
+
+		.graph tbody:after {
+			content:"0%";
+			bottom:-0.6em;
+		}
+
+		.graph tr {
+			position:relative;
+			display:block;
+		}
+
+		.graph tr:hover {
+			z-index:999;
+		}
+
+		.graph th,
+		.graph td {
+			display:block;
+			text-align:center;
+		}
+
+		.graph tbody th {
+			position:absolute;
+			top:-3em;
+			left:0;
+			width:100%;
+			font-weight:normal;
+			text-align:center;
+      white-space:nowrap;
+			text-indent:0;
+			transform:rotate(-45deg);
+		}
+
+		.graph tbody th:after {
+			content:"";
+		}
+
+		.graph td {
+			width:100%;
+			height:100%;
+			background:#F63;
+			border-radius:0.5em 0.5em 0 0;
+			transition:background 0.5s;
+		}
+
+		.graph tr:hover td {
+			opacity:0.7;
+		}
+
+		.graph td span {
+			overflow:hidden;
+			position:absolute;
+			left:50%;
+			top:50%;
+			width:0;
+			padding:0.5em 0;
+			margin:-1em 0 0;
+			font:normal 85%/120% arial,helvetica,sans-serif;
+/* 			background:white; */
+/* 			box-shadow:0 0 0.25em rgba(0,0,0,0.6); */
+			font-weight:bold;
+			opacity:0;
+			transition:opacity 0.5s;
+      color:white;
+		}
+
+		.toggleGraph:checked + table td span,
+		.graph tr:hover td span {
+			width:4em;
+			margin-left:-2em; /* 1/2 the declared width */
+			opacity:1;
+		}
+
+
+
+    
+
+
+	} /* min-width:32em */
+
+} /* grid only */

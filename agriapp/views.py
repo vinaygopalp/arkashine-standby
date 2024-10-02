@@ -85,6 +85,7 @@ def login(request):
             resp = user_login_access(request)
             if  resp:
                 return resp
+
             return redirect('/dashboard/')
         else:
             template_name = 'login1.html'
@@ -447,6 +448,12 @@ class Dashboard(TemplateView):
         years             = list(set(get_years_for_filter()))
         states            = get_all_states()
         years.sort()
+        data = {
+            'labels:[12,2,3,5,666,7,788,8]',
+            'values:[12,2,3,5,666,7,788,8]',
+        # 'labels': [data_field.date for data_field in user_data],  # X-axis labels (e.g., dates)
+        # 'values': [data_field.value for data_field in user_data],  # Y-axis values (e.g., user data)
+    }
         context = {
             'devises'               : devises,
             'chart_data'            : chart_date,
@@ -459,6 +466,11 @@ class Dashboard(TemplateView):
             'notification_inactive' : notifications_all.filter(status=False),
             'years'                 : years,
             'states'                : states,
+            'vinay'                     : 'vinay',
+            'total_users'           : User.objects.all().count(),
+            'meter_percentage'    : 24,
+            
+            #datas vinay
         }
         return context
 

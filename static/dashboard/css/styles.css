@@ -1,0 +1,14 @@
+-hover .highcharts-halo {
+  fill-opacity: 0;
+}
+.highcharts-button.highcharts-reset-zoom rect.highcharts-button-box {
+  height: 22px;
+}
+.highcharts-button.highcharts-reset-zoom text {
+  font-size: 14px;
+  transform: translateY(-4px);
+}
+
+
+
+/* graph 1 */

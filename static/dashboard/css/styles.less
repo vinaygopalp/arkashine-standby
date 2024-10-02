@@ -1,0 +1,23 @@
+// Define the chart colors at the top
+@chart-green: #4CAF50;  // Replace with your desired green color
+
+// Third chart
+
+&-hover {
+    .highcharts-halo {
+        fill-opacity: 0;
+    }
+}
+
+.highcharts-button {
+    &.highcharts-reset-zoom {
+        & rect.highcharts-button-box {
+            height: 22px;
+        }
+
+        & text {
+            font-size: 14px;
+            transform: translateY(-4px);
+        }
+    }
+}
